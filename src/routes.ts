@@ -147,8 +147,8 @@ app.post("/login", async (c) => {
   const givenData = validatedUser.data;
   const user = await findUserWithName(givenData.username);
 
-  if (!user || !checkPassword(givenData.password, user.password)) {
-    return c.html("error.ejs", {});
+  if (!user || !await checkPassword(givenData.password, user.password)) {
+    return c.html(await makeHTML("error.ejs", {}));
   }
 
   const token = generateToken(user);
@@ -171,7 +171,7 @@ app.post("/register", async (c) => {
   const user = await findUserWithName(givenData.username);
 
   if (user) {
-    return c.html("error.ejs", {});
+    return c.html(await makeHTML("login.ejs", {}));
   }
 
   givenData.password = await hashPassword(givenData.password);
@@ -188,19 +188,19 @@ app.post("/submit", userChecker, async (c) => {
   const user = await getUserFromToken(c);
 
   if (!user) {
-    return c.html("error.ejs", {});
+    return c.html(await makeHTML("login.ejs", {}));
   }
 
   const data = await c.req.parseBody();
 
   if (!data) {
-    return c.html("error.ejs", {});
+    return c.html(await makeHTML("login.ejs", {}));
   }
 
   const givenNumber = Number(data.number);
 
   if (isNaN(givenNumber)) {
-    return c.html("error.ejs", {});
+    return c.html(await makeHTML("login.ejs", {}));
   }
 
   const {currYear, currMonth, currDay} = getCurrentDate();
