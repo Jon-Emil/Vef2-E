@@ -1,0 +1,41 @@
+{
+  "name": "vef2-2025-h1",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/routes.ts"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.13.8",
+    "@prisma/client": "6.4.1",
+    "bcrypt": "^5.0.0",
+    "bcryptjs": "^3.0.2",
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "hono": "^4.7.2",
+    "jsonwebtoken": "^9.0.2",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.1",
+    "prisma": "^6.4.1",
+    "xss": "^1.0.15",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/ejs": "^3.1.5",
+    "@types/jsonwebtoken": "^9.0.9",
+    "@types/node": "^20.17.22",
+    "@types/passport": "^1.0.17",
+    "@types/passport-jwt": "^4.0.1",
+    "@typescript-eslint/eslint-plugin": "^8.25.0",
+    "@typescript-eslint/parser": "^8.25.0",
+    "@vitest/ui": "^3.0.7",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^10.0.2",
+    "eslint-plugin-ejs": "^0.0.2",
+    "eslint-plugin-prettier": "^5.2.3",
+    "prettier": "^3.5.2",
+    "tsx": "^4.19.3",
+    "typescript": "^5.4.5",
+    "vitest": "^3.0.7"
+  }
+}

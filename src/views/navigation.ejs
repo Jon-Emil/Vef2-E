@@ -1,0 +1,60 @@
+<nav>
+  <div class="yearbar">
+      <button id="prevBtn" onclick="changePage(-1)">Previous</button>
+      <div class="years" id="yearbar"></div>
+      <button id="nextBtn" onclick="changePage(1)">Next</button>
+  </div>
+  <div class="monthbar">
+    <% 
+      const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+      for (let i = 1; i <= 12; i++) {
+        const isBeforeMin = selectedYear === lowestYear && i < lowestMonth;
+        const isAfterMax = selectedYear === maxYear && i > maxMonth;
+        const isOutOfRange = isBeforeMin || isAfterMax;
+
+        if (!isOutOfRange) {
+    %>
+      <a href="/<%= selectedYear %>/<%= i %>"><%= months[i - 1] %></a>
+    <% 
+        } else { 
+    %>
+      <p><%= months[i - 1] %></p>
+    <% 
+        } 
+      } 
+    %>
+  </div>
+</nav>
+
+<script>
+  const lowestYear = <%= lowestYear %>;
+  const maxYear = <%= maxYear %>;
+  let chunkStart = Math.floor((<%= selectedYear %> - lowestYear) / 10) * 10 + lowestYear;
+
+  function renderItems() {
+      const yearbar = document.getElementById('yearbar');
+      yearbar.innerHTML = '';
+
+      for (let i = chunkStart; i < chunkStart + 10; i++) {
+          if (i > maxYear) {
+              yearbar.innerHTML += `<p>${i}</p>`;
+          } else {
+              yearbar.innerHTML += `<a href="/${i}/<%= selectedMonth %>">${i}</a>`;
+          }
+      }
+
+      document.getElementById('prevBtn').disabled = chunkStart === lowestYear;
+      document.getElementById('nextBtn').disabled = chunkStart + 10 > maxYear;
+  }
+
+  function changePage(direction) {
+      const newStart = chunkStart + direction * 10;
+      if (newStart >= lowestYear && newStart <= maxYear) {
+          chunkStart = newStart;
+          renderItems();
+      }
+  }
+
+  renderItems();
+</script>

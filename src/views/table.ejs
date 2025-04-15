@@ -1,0 +1,40 @@
+<% if (selectedYear == maxYear && selectedMonth == maxMonth) { %>
+  <form action="/submit" method="POST">
+    <label for="number">Enter a number:</label>
+    <input type="text" id="number" name="number" pattern="\d+" inputmode="numeric" required />
+    <button type="submit">Submit</button>
+  </form>  
+<% } %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Day</th>
+      <th>Amount</th>
+      <th>Month Total</th>
+      <th>Month Average</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% 
+        let index = 0;
+        let dayData
+        let sum = 0
+        for (let i = 1; i <= monthDays; i++) { 
+            if (monthData[index] && monthData[index].day === i) {
+                dayData = monthData[index].value;
+                index++;
+            } else {
+                dayData = 0;
+            }
+            sum += dayData;
+    %>
+        <tr>
+            <td><%= i %></td>
+            <td><%= dayData %></td>
+            <td><%= sum %></td>
+            <td><%= (sum / i).toFixed(2) %></td>
+        </tr>
+    <% } %>
+  </tbody>
+</table>
