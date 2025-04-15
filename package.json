@@ -2,7 +2,9 @@
   "name": "vef2-2025-h1",
   "type": "module",
   "scripts": {
-    "dev": "tsx watch src/routes.ts"
+    "dev": "tsx watch src/routes.ts",
+    "start": "node build/index.js",
+    "build": "tsc"
   },
   "dependencies": {
     "@hono/node-server": "^1.13.8",
