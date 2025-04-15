@@ -3,7 +3,7 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/routes.ts",
-    "start": "node build/index.js",
+    "start": "node dist/routes.js",
     "build": "tsc"
   },
   "dependencies": {
