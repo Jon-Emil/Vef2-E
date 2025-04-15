@@ -1,10 +1,5 @@
 import { Hono, type Context, type Next } from "hono";
 import { serve } from "@hono/node-server";
-import { readFile } from "fs/promises";
-import ejs from "ejs";
-import { PrismaClient } from "@prisma/client";
-import path from "path";
-import fs from "fs";
 import { makeHTML } from "./lib/rendering.js";
 import {
   checkPassword,
